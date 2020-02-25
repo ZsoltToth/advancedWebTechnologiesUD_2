@@ -1,0 +1,10 @@
+{
+  "name": "0_scss",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-sass": "^4.13.1"
+  },
+  "scripts": {
+    "css": "node-sass style.scss style.css"
+  }
+}
