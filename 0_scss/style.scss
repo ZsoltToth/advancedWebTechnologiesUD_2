@@ -1,5 +1,4 @@
 @import "variables";
-html body {
-  background-color: $secondary-color;
-  color : darken($primary-color,20);
-}
+$body-color: $primary-color;
+$body-bg : $secondary-color;
+@import "node_modules/bootstrap/scss/bootstrap";
