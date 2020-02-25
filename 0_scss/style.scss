@@ -1,5 +1,5 @@
-
+@import "variables";
 html body {
-  background-color: aliceblue;
-  color : lightcoral;
+  background-color: $secondary-color;
+  color : darken($primary-color,20);
 }
