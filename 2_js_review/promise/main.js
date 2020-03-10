@@ -15,4 +15,4 @@ calculator.totalGrossPrice_cb(products,
     },
     (errorMsg)=>{
     console.log("%s <----------- Callback ERROR", errorMsg);
-    })
+    });
