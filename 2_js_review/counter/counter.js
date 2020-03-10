@@ -1,9 +1,8 @@
-var count = 0;
-var increase = function(){
-  count++;
-};
+var increase = (function(){
+    var count = 0;
+    return function(){return count++;}
+})();
 
 module.exports = {
-    count : count,
     increase : increase
 }
