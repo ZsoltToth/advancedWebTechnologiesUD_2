@@ -1,11 +1,13 @@
 class TemperatureConverter{
     //Farenheit to Celsius
-    static farenheti2celsius(farenheit){
-        return (farenheit - 32) * 5 / 9;
+    farenheit2celsius(farenheit, callback){
+        var celsius =  (farenheit - 32) * 5 / 9;
+        callback(celsius);
     }
     //Celsius to Farenheit
-    static celsius2farenheit(celsius){
-        return celsius * 9/5 + 32;
+    celsius2farenheit(celsius, callback){
+        var farenheit =  celsius * 9/5 + 32;
+        callback(farenheit);
     }
 }
 
