@@ -12,3 +12,6 @@ console.log(students);
 //Passed Students
 
 //Print Results Table
+//Alice has failed!
+//Bob has passed!
+//etc.
