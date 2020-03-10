@@ -21,7 +21,7 @@ class GrossPriceCalculator{
      * @param error -- if any price is negative
      */
     totalGrossPrice_cb(products, success, error){
-        if(products.filter((product)=>{return product.price < 0}).length != 0){
+        if(products.filter((product)=>{return product.price < 0}).length !== 0){
             products.filter((product)=>{
                 return product.price < 0}
                 ).forEach((product)=>{
@@ -35,6 +35,24 @@ class GrossPriceCalculator{
             }
             return total + current.price;
         },0));
+    }
+
+    totalGrossPrice_promise(products){
+        return new Promise((resolve, reject)=>{
+            if(products.filter((product)=>{return product.price < 0}).length !== 0){
+                products.filter((product)=>{
+                    return product.price < 0}
+                ).forEach((product)=>{
+                    reject(`Price of ${product.name} is negative!`)
+                });
+            }
+            resolve(products.reduce((total,current)=>{
+                if(current.isTaxable){
+                    return total + current.price * (100 + this.vatRate) / 100;
+                }
+                return total + current.price;
+            },0));
+        });
     }
 }
 
