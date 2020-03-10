@@ -4,3 +4,7 @@ const products = [
     { name : "Cherry", price : 8, isTaxable : false},
     { name : "Dark Chocolate", price : -23, isTaxable : true},
 ];
+
+const calculator = require('./GrossPriceCalculator');
+
+console.log(calculator.totalGrossPrice_ret(products));
