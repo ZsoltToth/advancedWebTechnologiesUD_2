@@ -22,11 +22,15 @@ fetchBook42 = async () => {
 
     authorRequests = [];
     book42.authors.forEach((authorId) => {
-        authorRequests.push(axios.get(`http://localhost:3001/authors/${authorId}`));
+        authorRequests.push(
+            axios.get(`http://localhost:3001/authors/${authorId}`)
+                .then((res)=>{return res.data})
+                .catch((err)=>{console.log(err)})
+        );
     });
-    bookAuthorsResp = await Promise.all(authorRequests);
-    bookAuthors = bookAuthorsResp.map((res)=>{return res.data});
-    book42.authors = bookAuthorsResp.map((res)=>{return res.data});
+    bookAuthors = await Promise.all(authorRequests);
+//    console.log(bookAuthors);
+    book42.authors = bookAuthors;
     console.log(book42);
 };
 fetchBook42();
