@@ -1,4 +1,5 @@
 const faker = require('faker');
+const fs = require('fs');
 
 //console.log(`${faker.name.firstName()} ${faker.name.lastName()}`);
 
@@ -20,9 +21,9 @@ generateBook = (id) => {
     titleLength = Math.round(Math.random() * 3) + 1;
     authorCnt = Math.round(Math.random() * 2) + 1;
     bookAuthors = [];
-    console.log(authorCnt);
+    //console.log(authorCnt);
     for(let i = 0; i < authorCnt; i++){
-        bookAuthors.push(faker.random.arrayElement(authors));
+    bookAuthors.push(faker.random.arrayElement(authors).id);
     }
     return {
         id : id,
@@ -31,4 +32,16 @@ generateBook = (id) => {
         authors : bookAuthors
     };
 };
-console.log(generateBook());
+var books = [];
+for(let i = 0; i < 1000; i++){
+    books.push(generateBook(i));
+}
+//console.log(books[0]);
+fs.writeFile(
+    'database.fake.json',
+    JSON.stringify({
+        authors : authors,
+        books: books
+    }),
+    (err) => {}
+);
