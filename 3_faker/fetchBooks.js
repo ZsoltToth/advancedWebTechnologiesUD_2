@@ -7,17 +7,26 @@ axios.get('http://localhost:3001/authors/13')
     .catch((err)=>{console.log(err)});
 
 var book42 = {};
-axios.get('http://localhost:3001/books/42')
-    .then((res)=>{
-        book42 = res.data;
-        console.log(res.data);
-        res.data.authors.forEach((authorId)=>{
-            axios.get(`http://localhost:3001/authors/${authorId}`)
-                .then((r)=>{console.log(r.data)})
-                .catch((e)=>{console.log(e)});
+fetchBook42 = async () => {
+    book42 = {};
+    await axios.get('http://localhost:3001/books/42')
+        .then((res) => {
+            book42 = res.data;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(() => {
+            console.log(book42);
         });
-    })
-    .catch((err)=>{console.log(err)})
-    .finally(()=>{
-        console.log(book42);
+
+    authorRequests = [];
+    book42.authors.forEach((authorId) => {
+        authorRequests.push(axios.get(`http://localhost:3001/authors/${authorId}`));
     });
+    bookAuthorsResp = await Promise.all(authorRequests);
+    bookAuthors = bookAuthorsResp.map((res)=>{return res.data});
+    book42.authors = bookAuthorsResp.map((res)=>{return res.data});
+    console.log(book42);
+};
+fetchBook42();
