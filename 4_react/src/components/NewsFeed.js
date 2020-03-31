@@ -1,4 +1,5 @@
 import React from 'react';
+import NewsItem from "./NewsItem";
 
 class NewsFeed extends React.Component{
 
@@ -18,10 +19,7 @@ class NewsFeed extends React.Component{
                 <h1>News Feed</h1>
                 {this.newsItems.map((newsItem) =>{
                     return (
-                        <div>
-                            <h2>{newsItem.title}</h2>
-                            <p>{newsItem.content}</p>
-                        </div>
+                        <NewsItem item={newsItem}/>
                     );
                 })}
             </div>
