@@ -13,6 +13,16 @@ class ToDoList extends React.Component{
             },
             todos : []
         };
+        this.deleteToDoItem = this.deleteToDoItem.bind(this);
+    }
+
+    deleteToDoItem(todoItem){
+        let st = this.state;
+        st.todos = this.state.todos.filter((todo)=>{
+            return todo.name !== todoItem.name;
+        });
+        this.setState(st);
+
     }
 
     render(){
@@ -80,7 +90,53 @@ class ToDoList extends React.Component{
                         </tbody>
                     </table>
                 </div>
-                <div className="row"></div>
+                <div className="row">
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Estimation</td>
+                            <td>Descrition</td>
+                            <td>Action</td>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td>Sum</td>
+                                <td>
+                                    {
+                                        this.state.todos.reduce(
+                                            (total, current)=>{
+                                                return total  + current.estimation;
+                                            },0)
+                                    }</td>
+                                <td>Count</td>
+                                <td>{this.state.todos.length}</td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        {
+                            this.state.todos.map((todoItem)=>{
+                                return (
+                                    <tr key={todoItem.name}>
+                                        <td>{todoItem.name}</td>
+                                        <td>{todoItem.estimation}</td>
+                                        <td>{todoItem.description}</td>
+                                        <td>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={(e)=>{
+                                                    this.deleteToDoItem(todoItem,e);
+                                                }}
+                                            >Delete</button>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }
