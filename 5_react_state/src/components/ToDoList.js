@@ -69,7 +69,10 @@ class ToDoList extends React.Component{
                                 <button
                                     className="btn btn-info"
                                     onClick={()=>{
-                                        console.log(this.state.form);
+                                        let st = this.state;
+                                        st.todos.push(st.form);
+                                        st.form = {name :'', description: '', estimation: 0};
+                                        this.setState(st);
                                     }}
                                 >Add</button>
                             </td>
