@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import ToDoList from "./components/ToDoList";
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
         <div className="row">
             <div className="col-md-2"></div>
             <div className="col-md-8">
-                <h1>Todo List</h1>
+                <ToDoList/>
             </div>
             <div className="col-md-2"></div>
         </div>
