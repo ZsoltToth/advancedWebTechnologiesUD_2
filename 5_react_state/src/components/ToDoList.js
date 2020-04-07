@@ -1,4 +1,5 @@
 import React from 'react';
+import ToDoListItem from "./ToDoListItem";
 
 class ToDoList extends React.Component{
 
@@ -118,19 +119,11 @@ class ToDoList extends React.Component{
                         {
                             this.state.todos.map((todoItem)=>{
                                 return (
-                                    <tr key={todoItem.name}>
-                                        <td>{todoItem.name}</td>
-                                        <td>{todoItem.estimation}</td>
-                                        <td>{todoItem.description}</td>
-                                        <td>
-                                            <button
-                                                className="btn btn-danger"
-                                                onClick={(e)=>{
-                                                    this.deleteToDoItem(todoItem,e);
-                                                }}
-                                            >Delete</button>
-                                        </td>
-                                    </tr>
+                                <ToDoListItem
+                                    key={todoItem.name}
+                                    todoItem={todoItem}
+                                    deleteAction={this.deleteToDoItem}
+                                />
                                 );
                             })
                         }
