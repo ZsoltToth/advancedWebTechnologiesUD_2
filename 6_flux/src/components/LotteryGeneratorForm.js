@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import LotteryPicks from './LotterPicks'
+import LotteryActions from "../actions/LotteryActions";
 
 class LotteryGeneratorForm extends React.Component{
 
@@ -64,24 +63,10 @@ class LotteryGeneratorForm extends React.Component{
                     <td>
                         <button
                             onClick={()=>{
-                                console.log(this.state);
-                                let picks = [];
-                                for(let i = 0; i < this.state.pickCnt; i++){
-                                    let currentPick = Math.round(
-                                        Math.random() *
-                                        (this.state.max - this.state.min)
-                                        + this.state.min
-                                    );
-                                    if(picks.includes(currentPick)){
-                                        i--;
-                                    }
-                                    else{
-                                        picks.push(currentPick);
-                                    }
-                                }
-                                ReactDOM.render(
-                                    <LotteryPicks picks={picks}/>,
-                                    document.getElementById('picks')
+                                LotteryActions.generatePicks(
+                                    this.state.min,
+                                    this.state.max,
+                                    this.state.pickCnt
                                 );
                             }}>
                             Generate
