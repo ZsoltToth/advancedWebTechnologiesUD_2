@@ -1,28 +1,16 @@
-import ReactDOM from "react-dom";
-import LotteryPicks from "../components/LotterPicks";
-import React from "react";
+import dispatcher from '../LotteryDispatcher'
 
 class LotteryActions{
 
     generatePicks(min, max, pickCnt){
-        let picks = [];
-        for(let i = 0; i < pickCnt; i++){
-            let currentPick = Math.round(
-                Math.random() *
-                (max - min)
-                + min
-            );
-            if(picks.includes(currentPick)){
-                i--;
-            }
-            else{
-                picks.push(currentPick);
-            }
-        }
-        ReactDOM.render(
-            <LotteryPicks picks={picks}/>,
-            document.getElementById('picks')
-        );
+        dispatcher.handleViewAction({
+           actionType : 'GENERATE_PICKS',
+           payload : {
+               min : min,
+               max : max,
+               pickCnt : pickCnt
+           }
+        });
     }
 }
 
