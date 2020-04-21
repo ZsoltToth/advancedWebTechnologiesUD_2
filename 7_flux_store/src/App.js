@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import ShoppingCartForm from "./components/ShoppingCartForm";
+import DetailedShoppingList from "./components/DetailedShoppingList";
+import BriefShoppingList from "./components/BriefShoppingList";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="row">
+            <div className="col-md-12"><ShoppingCartForm/></div>
+        </div>
+        <div className="row">
+          <div className="col-md-9"><DetailedShoppingList/></div>
+          <div className="col-md-3"><BriefShoppingList/></div>
+        </div>
     </div>
   );
 }
