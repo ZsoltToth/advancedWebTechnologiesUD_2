@@ -9,6 +9,13 @@ class ShoppingCartActions {
         });
     }
 
+    removeItemById(id){
+        dispatcher.handleViewAction({
+            commandType : 'REMOVE_BY_ID',
+            id : id
+        })
+    }
+
 }
 
 export default new ShoppingCartActions();
